@@ -1,10 +1,12 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/naixYZ"><img src="[https://imgur.com/pY1WUFX.png](https://imgur.com/a/ajmzMrU)" alt="Visual Systems - Discord Bot"></a>
+  <a ![alt text]((https://imgur.com/a/ajmzMrU)></a>
   <br>
   Visual Discord Bot
   <br>
 </h1>
+
+
 
 
 <p align="center">
