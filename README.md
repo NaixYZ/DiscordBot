@@ -1,13 +1,10 @@
 <h1 align="center">
   <br>
-  <a ![alt text]((https://imgur.com/a/ajmzMrU)></a>
+  <img src="https://i.imgur.com/ajmzMrU.png" alt="Visual Discord Bot Logo">
   <br>
   Visual Discord Bot
   <br>
 </h1>
-
-
-
 
 <p align="center">
   <a href="https://discord.gg/Visualise">
@@ -37,14 +34,10 @@ from installing and updating, every part of the bot can be controlled from withi
 - Ticket System
 - Reaction roles
 
-
-
 # Join the community!
-
 
 Join us on our [Official Discord Server](https://discord.gg/visualise)!
 
 # License
 
-Released under the [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html) license.
-
+Released under the [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html) license
