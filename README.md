@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="https://i.imgur.com/ajmzMrU.png" alt="Visual Discord Bot Logo">
+  <img src="(https://cdn.discordapp.com/attachments/1321234657911635970/1342618116156559360/8059bdfffe605a00350774b53eff8c67.jpg?ex=67ba4a0f&is=67b8f88f&hm=3d9c60e1780b901f92bba16a4874c481f674c7ed1f9651a139e232f896795ca2&)" alt="Visual Discord Bot Logo">
   <br>
   Visual Discord Bot
   <br>
