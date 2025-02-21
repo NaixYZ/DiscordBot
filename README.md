@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/naixYZ"><img src="[https://imgur.com/pY1WUFX.png](https://imgur.com/a/ajmzMrU)]" alt="Visual Systems - Discord Bot"></a>
+  <a href="https://github.com/naixYZ"><img src="[https://imgur.com/pY1WUFX.png](https://imgur.com/a/ajmzMrU)" alt="Visual Systems - Discord Bot"></a>
   <br>
   Visual Discord Bot
   <br>
@@ -46,6 +46,3 @@ Join us on our [Official Discord Server](https://discord.gg/visualise)!
 
 Released under the [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html) license.
 
-
-This project vendors [discord.ext.menus](https://github.com/Rapptz/discord-ext-menus) package made by Danny Y. (Rapptz) which is distributed under MIT License.
-A copy of this license can be found in the [discord-ext-menus.LICENSE](redbot/vendored/discord-ext-menus.LICENSE) file in the [redbot/vendored](redbot/vendored) folder of this repository.
