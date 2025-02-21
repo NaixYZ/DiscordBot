@@ -1,0 +1,5 @@
+{
+    "TOKEN": "YOURTOKEN",
+    "GUILD_ID": SERVERID
+    ,"ALLOWED_ROLES": ["Owner", "VISUALISE","mod"]
+}                                               
