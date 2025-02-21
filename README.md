@@ -1,7 +1,5 @@
 <h1 align="center">
   <br>
-  <img src="(https://imgur.com/bbYGCgH)" alt="Visual Discord Bot Logo">
-  <br>
   Visual Discord Bot
   <br>
 </h1>
