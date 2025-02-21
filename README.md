@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/Cog-Creators/Red-DiscordBot/tree/V3/develop"><img src="[https://imgur.com/pY1WUFX.png](https://imgur.com/a/ajmzMrU)" alt="Visual Systems - Discord Bot"></a>
+  <a href="https://github.com/naixYZ"><img src="[https://imgur.com/pY1WUFX.png](https://imgur.com/a/ajmzMrU)]" alt="Visual Systems - Discord Bot"></a>
   <br>
   Visual Discord Bot
   <br>
@@ -24,7 +24,7 @@
 This is a *self-hosted bot* – meaning you will need
 to host and maintain your own instance. 
 
-Installation guide soon is easy, and you do **NOT** need to know anything about coding! Aside
+(Installation guide soon) is easy, and you do **NOT** need to know anything about coding! Aside
 from installing and updating, every part of the bot can be controlled from within Discord.
 
 **The default set of modules includes and is not limited to:**
