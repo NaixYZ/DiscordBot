@@ -2,4 +2,19 @@
     "TOKEN": "YOURTOKEN",
     "GUILD_ID": SERVERID
     ,"ALLOWED_ROLES": ["Owner", "VISUALISE","mod"]
-}                                               
+      "CHEAT_ROLES": {
+    "Neverloose": {"name": "Neverloose", "emoji": "🔥", "id": 1342248902346149939},
+    "Fatality": {"name": "Fatality", "emoji": "💀", "id": 1342248851091882124},
+    "Nixware": {"name": "Nixware", "emoji": "⚙️", "id": 1342248791952064635},
+    "Kidua": {"name": "Kidua", "emoji": "⚔️", "id": 1342248724302401736},
+    "Oxide": {"name": "Oxide", "emoji": "🧪", "id": 1342248678307659846},
+    "Gamesense": {"name": "Gamesense", "emoji": "🎮", "id": 1342247996699705435},
+    "Iniuria": {"name": "Iniuria", "emoji": "🛡️", "id": 1342247941103947786}
+  },
+  "PING_ROLES": {
+    "News Ping": {"name": "News Ping", "emoji": "📢", "id": 1342425195511812106},
+    "Giveaway Ping": {"name": "Giveaway Ping", "emoji": "🎁", "id": 1342425232820011079}
+  }
+}
+
+                                              
