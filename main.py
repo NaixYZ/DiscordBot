@@ -8,6 +8,7 @@ import asyncio
 # Config load
 with open("config.json", "r", encoding="utf-8") as config_file:
     config = json.load(config_file)
+
 TOKEN = config["TOKEN"]
 GUILD_ID = config["GUILD_ID"]
 ALLOWED_ROLES = config.get("ALLOWED_ROLES", [])  # Roles that are allowed to execute commands
@@ -151,6 +152,7 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name="Visualise Systems"), status=discord.Status.idle)
     bot.add_view(VerifyView())  # Add the persistent view for the verify button
     bot.add_view(TicketView())  # Add the persistent view for the ticket system
+    bot.add_view(CombinedRoleView())  # Add the persistent view for the reaction roles
     print(f"Logged in as {bot.user}")
 
     # Create log channel if it doesn't exist
@@ -384,6 +386,9 @@ async def handle_reaction(payload, add):
         return
 
     emoji = payload.emoji.name
+
+    # Debugging output
+    print(f"Reaction added by {payload.user_id} with emoji {emoji}")
 
     # Check if the reaction is for cheat roles
     for key, role_data in CHEAT_ROLES.items():
