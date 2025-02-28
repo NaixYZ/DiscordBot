@@ -32,6 +32,13 @@ from installing and updating, every part of the bot can be controlled from withi
 - Ticket System
 - Reaction roles
 
+# Changelog 
+
+28/02/2025
+-Fixed Verify Timeout 
+-Fixed !say Command Bugging
+-Fixed Ticketsystem Timeout 
+
 # Join the community!
 
 Join us on our [Official Discord Server](https://discord.gg/visualise)!
