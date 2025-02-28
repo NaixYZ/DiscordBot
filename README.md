@@ -38,6 +38,7 @@ from installing and updating, every part of the bot can be controlled from withi
 -Fixed Verify Timeout 
 -Fixed !say Command Bugging
 -Fixed Ticketsystem Timeout 
+-Translated into English
 
 # Join the community!
 
