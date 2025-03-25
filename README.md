@@ -45,6 +45,8 @@ from installing and updating, every part of the bot can be controlled from withi
 - fixed tickets
 - playing visualise status
 - fixed reaction roles 
+- Daily nuke 0:00 & 15:00 UTC+01:00
+- added !nukeall command
 
 # Join the community!
 
