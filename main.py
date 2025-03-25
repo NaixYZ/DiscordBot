@@ -13,8 +13,22 @@ TOKEN = config["TOKEN"]
 GUILD_ID = config["GUILD_ID"]
 ALLOWED_ROLES = config.get("ALLOWED_ROLES", [])  # Roles that are allowed to execute commands
 
+# ID des Voice-Channels für den Member Count
+VOICE_CHANNEL_ID = 123456789012345678  # Ersetze dies durch die tatsächliche ID deines Voice-Channels
+
 # Load cheat roles from config
-CHEAT_ROLES = config.get("CHEAT_ROLES", {})
+CHEAT_ROLES = {
+    "Neverloose": {"name": "Neverloose", "emoji": "🔥", "id": 1353664202392342528},
+    "Fatality": {"name": "Fatality", "emoji": "💀", "id": 1353664399054864444},
+    "Nixware": {"name": "Nixware", "emoji": "⚙️", "id": 1353673417961902081},
+    "Kidua": {"name": "Kidua", "emoji": "⚔️", "id": 1353664328695414876},
+    "Oxide": {"name": "Oxide", "emoji": "🧪", "id": 1353664105654911107},
+    "Gamesense": {"name": "Gamesense", "emoji": "🎮", "id": 1353664007319457823},
+    "Iniuria": {"name": "Iniuria", "emoji": "🛡️", "id": 1342247941103947786},
+    "F0xyz.net": {"name": "F0xyz.net", "emoji": "🛡️", "id": 1353664574057873488},
+    "ech0.cc": {"name": "ech0.cc", "emoji": "🛡️", "id": 1353664485747069029},
+    "memesense": {"name": "memesense", "emoji": "🛡️", "id": 1353664711476117559}
+}
 
 # Reaction Roles
 REACTION_ROLES = {role_data["name"]: role_data["id"] for role_data in CHEAT_ROLES.values()}
@@ -71,6 +85,9 @@ class CloseTicketButton(discord.ui.Button):
         super().__init__(label="Close Ticket", style=discord.ButtonStyle.danger, custom_id="close_ticket_button")
 
     async def callback(self, interaction: discord.Interaction):
+        # Remove the user from the channel permissions
+        await interaction.channel.set_permissions(interaction.user, read_messages=False, send_messages=False)
+
         archive_category = discord.utils.get(interaction.guild.categories, name=ARCHIVE_CATEGORY_NAME)
         if archive_category is None:
             archive_category = await interaction.guild.create_category(ARCHIVE_CATEGORY_NAME)
@@ -167,6 +184,24 @@ async def on_ready():
         view = VerifyView()
         await verify_channel.send("Click the button to solve the captcha:", view=view)
 
+    # Update member count in the voice channel
+    await update_member_count(guild)
+
+@bot.event
+async def on_member_join(member):
+    guild = member.guild
+    await update_member_count(guild)
+
+@bot.event
+async def on_member_remove(member):
+    guild = member.guild
+    await update_member_count(guild)
+
+async def update_member_count(guild):
+    voice_channel = guild.get_channel(VOICE_CHANNEL_ID)
+    if voice_channel:
+        member_count = guild.member_count  # Gesamtanzahl der Mitglieder im Server
+        await voice_channel.edit(name=f'Mitglieder: {member_count}')  # Ändere den Namen des Voice-Channels
 
 @bot.event
 async def on_message(message):
@@ -180,7 +215,7 @@ async def on_message(message):
         if message.content:
             embed = discord.Embed(
                 title="Message Logged",
-                description=f"**User :** {message.author}\n**Message:** {message.content}\n**Channel:** {message.channel.mention}",
+                description=f"**User    :** {message.author}\n**Message:** {message.content}\n**Channel:** {message.channel.mention}",
                 color=discord.Color.blue()
             )
             embed.set_footer(text=f"Timestamp: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')}")
@@ -191,7 +226,7 @@ async def on_message(message):
                 if attachment.url.endswith(('.png', '.jpg', '.jpeg', '.gif')):
                     embed = discord.Embed(
                         title="Image Logged",
-                        description=f"**User :** {message.author}\n**Image:** {attachment.url}\n**Channel:** {message.channel.mention}",
+                        description=f"**User    :** {message.author}\n**Image:** {attachment.url}\n**Channel:** {message.channel.mention}",
                         color=discord.Color.blue()
                     )
                     embed.set_footer(text=f"Timestamp: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')}")
@@ -207,7 +242,7 @@ async def log_command(ctx):
     if log_channel:
         embed = discord.Embed(
             title="Command Executed",
-            description=f"**User :** {ctx.author}\n**Command:** {ctx.message.content}\n**Channel:** {ctx.channel.mention}",
+            description=f"**User    :** {ctx.author}\n**Command:** {ctx.message.content}\n**Channel:** {ctx.channel.mention}",
             color=discord.Color.blue()
         )
         embed.set_footer(text=f"Timestamp: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')}")
@@ -326,6 +361,7 @@ class CombinedRoleSelect(discord.ui.Select):
         # Add cheat roles to the dropdown
         for role_data in CHEAT_ROLES.values():
             options.append(discord.SelectOption(label=role_data["name"], value=f"cheat_{role_data['id']}", description=f"Select this role to receive {role_data['name']}."))
+
         super().__init__(placeholder="Select a role...", options=options, min_values=1, max_values=1, custom_id="combined_role_select")  # Added custom_id
 
     async def callback(self, interaction: discord.Interaction):
