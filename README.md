@@ -40,6 +40,12 @@ from installing and updating, every part of the bot can be controlled from withi
 -Fixed Ticketsystem Timeout 
 -Translated into English
 
+25/03/2025
+- added membercount 
+- fixed tickets
+- playing visualise status
+- fixed reaction roles 
+
 # Join the community!
 
 Join us on our [Official Discord Server](https://discord.gg/visualise)!
