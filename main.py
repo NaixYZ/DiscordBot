@@ -1,7 +1,7 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import random
 import asyncio
 
@@ -14,7 +14,7 @@ GUILD_ID = config["GUILD_ID"]
 ALLOWED_ROLES = config.get("ALLOWED_ROLES", [])  # Roles that are allowed to execute commands
 
 # ID des Voice-Channels für den Member Count
-VOICE_CHANNEL_ID = 123456789012345678  # Ersetze dies durch die tatsächliche ID deines Voice-Channels
+VOICE_CHANNEL_ID = 1354056851708182610  # Ersetze dies durch die tatsächliche ID deines Voice-Channels
 
 # Load cheat roles from config
 CHEAT_ROLES = {
@@ -53,6 +53,23 @@ VERIFY_CHANNEL_NAME = "verify"
 TICKET_CATEGORY_NAME = "Tickets"
 ARCHIVE_CATEGORY_NAME = "Archived Tickets"
 
+# Channels to nuke
+CHANNELS_TO_NUKE = ["trashtalk", "afd talk", "media"]
+
+async def nuke_channels(guild):
+    for channel_name in CHANNELS_TO_NUKE:
+        channel = discord.utils.get(guild.text_channels, name=channel_name)
+        if channel:
+            await channel.purge()  # Lösche alle Nachrichten im Channel
+            await channel.send("Channel got nuked")  # Sende die Nachricht
+
+@tasks.loop(minutes=1)  # Überprüfe jede Minute
+async def nuke_task():
+    await bot.wait_until_ready()  # Warte, bis der Bot bereit ist
+    now = datetime.now(timezone(timedelta(hours=1)))  # Deutsche Zeit (MEZ/MESZ)
+    if (now.hour == 0 or now.hour == 15) and now.minute == 0:  # Überprüfe, ob es 00:00 oder 15:00 Uhr ist
+        guild = bot.get_guild(GUILD_ID)  # Hole die Guild
+        await nuke_channels(guild)  # Rufe die Nuke-Funktion auf
 
 class TicketDropdown(discord.ui.Select):
     def __init__(self):
@@ -166,6 +183,7 @@ async def create_log_channel(guild):
 
 @bot.event
 async def on_ready():
+    nuke_task.start()  # Starte den Nuke-Task
     await bot.change_presence(activity=discord.Game(name="Visualise Systems"), status=discord.Status.idle)
     bot.add_view(VerifyView())  # Add the persistent view for the verify button
     bot.add_view(TicketView())  # Add the persistent view for the ticket system
@@ -215,7 +233,7 @@ async def on_message(message):
         if message.content:
             embed = discord.Embed(
                 title="Message Logged",
-                description=f"**User    :** {message.author}\n**Message:** {message.content}\n**Channel:** {message.channel.mention}",
+                description=f"**User       :** {message.author}\n**Message:** {message.content}\n**Channel:** {message.channel.mention}",
                 color=discord.Color.blue()
             )
             embed.set_footer(text=f"Timestamp: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')}")
@@ -226,7 +244,7 @@ async def on_message(message):
                 if attachment.url.endswith(('.png', '.jpg', '.jpeg', '.gif')):
                     embed = discord.Embed(
                         title="Image Logged",
-                        description=f"**User    :** {message.author}\n**Image:** {attachment.url}\n**Channel:** {message.channel.mention}",
+                        description=f"**User       :** {message.author}\n**Image:** {attachment.url}\n**Channel:** {message.channel.mention}",
                         color=discord.Color.blue()
                     )
                     embed.set_footer(text=f"Timestamp: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')}")
@@ -242,7 +260,7 @@ async def log_command(ctx):
     if log_channel:
         embed = discord.Embed(
             title="Command Executed",
-            description=f"**User    :** {ctx.author}\n**Command:** {ctx.message.content}\n**Channel:** {ctx.channel.mention}",
+            description=f"**User       :** {ctx.author}\n**Command:** {ctx.message.content}\n**Channel:** {ctx.channel.mention}",
             color=discord.Color.blue()
         )
         embed.set_footer(text=f"Timestamp: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')}")
@@ -260,6 +278,13 @@ async def command(ctx):
     commands_string = "\n".join(commands_list)
     await ctx.send(f"Available commands:\n{commands_string}")
 
+@bot.command()
+@commands.has_permissions(manage_channels=True)  # Sicherstellen, dass der Benutzer die Berechtigung hat, Channels zu verwalten
+async def nukeall(ctx):
+    """Nuke specified channels immediately."""
+    guild = ctx.guild
+    await nuke_channels(guild)  # Rufe die Nuke-Funktion auf
+    await ctx.send("Die angegebenen Channels wurden nuked!")  # Bestätigungsnachricht
 
 @bot.command()
 async def say(ctx, *, message: str):
