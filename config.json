@@ -1,20 +1,21 @@
 {
-    "TOKEN": "YOURTOKEN",
-    "GUILD_ID": SERVERID
-    ,"ALLOWED_ROLES": ["Owner", "VISUALISE","mod"]
-      "CHEAT_ROLES": {
-    "Neverloose": {"name": "Neverloose", "emoji": "🔥", "id": 1342248902346149939},
-    "Fatality": {"name": "Fatality", "emoji": "💀", "id": 1342248851091882124},
-    "Nixware": {"name": "Nixware", "emoji": "⚙️", "id": 1342248791952064635},
-    "Kidua": {"name": "Kidua", "emoji": "⚔️", "id": 1342248724302401736},
-    "Oxide": {"name": "Oxide", "emoji": "🧪", "id": 1342248678307659846},
-    "Gamesense": {"name": "Gamesense", "emoji": "🎮", "id": 1342247996699705435},
-    "Iniuria": {"name": "Iniuria", "emoji": "🛡️", "id": 1342247941103947786}
+  "TOKEN": "token",
+  "GUILD_ID": SERVER ID,
+  "ALLOWED_ROLES": ["Owner", "mod"],
+  "CHEAT_ROLES": {
+    "Neverloose": {"name": "Neverloose", "emoji": "🔥", "id": 1353664202392342528},
+    "Fatality": {"name": "Fatality", "emoji": "💀", "id": 1353664399054864444},
+    "Nixware": {"name": "Nixware", "emoji": "⚙️", "id": 1353673417961902081},
+    "Kidua": {"name": "Kidua", "emoji": "⚔️", "id": 1353664328695414876},
+    "Oxide": {"name": "Oxide", "emoji": "🧪", "id": 1353664105654911107},
+    "Gamesense": {"name": "Gamesense", "emoji": "🎮", "id": 1353664007319457823},
+    "Iniuria": {"name": "Iniuria", "emoji": "🛡️", "id": 1342247941103947786},
+    "F0xyz.net": {"name": "F0xyz.net", "emoji": "🛡️", "id": 1353664574057873488},
+    "ech0.cc": {"name": "ech0.cc", "emoji": "🛡️", "id": 1353664485747069029},
+    "memesense": {"name": "memesense", "emoji": "🛡️", "id": 1353664711476117559}
   },
   "PING_ROLES": {
     "News Ping": {"name": "News Ping", "emoji": "📢", "id": 1342425195511812106},
     "Giveaway Ping": {"name": "Giveaway Ping", "emoji": "🎁", "id": 1342425232820011079}
   }
 }
-
-                                              
